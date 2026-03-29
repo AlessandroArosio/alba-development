@@ -14,7 +14,7 @@ export default function HomePage() {
     <>
       <Navbar />
       <Hero />
-      <Portfolio />
+      <Portfolio limit={4} />
       <Services />
       <TechStack />
       <About />
