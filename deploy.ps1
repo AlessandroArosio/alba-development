@@ -129,16 +129,27 @@ if (Approve "Upload ./dist/ to Pi staging dir, then atomically replace $REMOTE_D
 # blocks defined inline. The sites-enabled/ directory exists on disk but is
 # NOT referenced by an include directive in nginx.conf, so files placed there
 # have NO effect. We inject our block directly into nginx.conf.
-# The injection is IDEMPOTENT - re-running will detect the block already exists.
+# The injection is IDEMPOTENT - re-running detects the marked block and replaces
+# it in-place, so re-deploying always applies the latest config.
 
 Write-Step "PHASE 4 - Configure nginx"
 
-# Show the server block that will be injected
+# Show the server blocks that will be injected
 $blockPreview = @"
+    # BEGIN alba-development
     # Alba Development - albadevelopment.co.uk (port $SERVE_PORT via Cloudflare Tunnel)
+
+    # Redirect bare domain to www (fixes duplicate-content / canonical issue)
     server {
         listen $SERVE_PORT;
-        server_name _;
+        server_name albadevelopment.co.uk;
+        return 301 https://www.albadevelopment.co.uk`$request_uri;
+    }
+
+    # Main www site
+    server {
+        listen $SERVE_PORT;
+        server_name www.albadevelopment.co.uk;
         root $REMOTE_DIR;
         index index.html;
 
@@ -146,41 +157,58 @@ $blockPreview = @"
         add_header X-Content-Type-Options "nosniff"                         always;
         add_header Referrer-Policy        "strict-origin-when-cross-origin" always;
 
-        location ~* .(js|css|webp|jpg|jpeg|png|svg|ico|woff2|woff|ttf) {
+        location ~* \.(js|css|webp|jpg|jpeg|png|svg|ico|woff2|woff|ttf)$ {
             expires 1y;
             add_header Cache-Control "public, immutable";
             access_log off;
         }
         location / { try_files `$uri `$uri/ /index.html; }
-        location ~ /. { deny all; }
+        location ~ /\. { deny all; }
     }
+    # END alba-development
 "@
 Write-Host ""
-Write-Host "  --- server block to be injected into /etc/nginx/nginx.conf ---" -ForegroundColor Yellow
+Write-Host "  --- server blocks to be injected into /etc/nginx/nginx.conf ---" -ForegroundColor Yellow
 Write-Host $blockPreview -ForegroundColor DarkGray
-Write-Host "  ---------------------------------------------------------------" -ForegroundColor Yellow
+Write-Host "  ----------------------------------------------------------------" -ForegroundColor Yellow
 
-# Check if block is already present
-$alreadyPresent = (ssh $PI_HOST "grep -c 'alba-development' /etc/nginx/nginx.conf 2>/dev/null || echo 0").Trim()
+# Check whether the current marked block is already present (idempotency marker)
+$alreadyPresent = (ssh $PI_HOST "grep -c '# BEGIN alba-development' /etc/nginx/nginx.conf 2>/dev/null || echo 0").Trim()
 if ($alreadyPresent -ne "0") {
-    Write-Ok "Server block already present in nginx.conf - skipping injection."
+    Write-Ok "Existing alba-development block found - will replace it with the latest config."
 } else {
-    if (Approve "Backup nginx.conf then inject the server block above into /etc/nginx/nginx.conf") {
-        # 1. Backup
-        ssh $PI_HOST "sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak" 2>&1 | Out-Null
-        Write-Ok "Backup saved to /etc/nginx/nginx.conf.bak"
+    Write-Info "No existing alba-development block found - will inject fresh."
+}
 
-        # 2. Build a clean Python file locally and scp it (avoids all SSH quoting issues)
-        $pyInject = @'
-f = open("/etc/nginx/nginx.conf")
-content = f.read()
-f.close()
+if (Approve "Backup nginx.conf then inject/replace the server blocks above in /etc/nginx/nginx.conf") {
+    # 1. Backup
+    ssh $PI_HOST "sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak" 2>&1 | Out-Null
+    Write-Ok "Backup saved to /etc/nginx/nginx.conf.bak"
 
-block = """
-    # Alba Development - albadevelopment.co.uk - port SERVE_PORT_TOKEN (Cloudflare Tunnel)
+    # 2. Build a clean Python file locally and scp it (avoids all SSH quoting issues).
+    #    Uses BEGIN/END markers so re-runs replace the block in-place rather than
+    #    appending a duplicate. Handles both fresh injection and update.
+    $pyInject = @'
+import re
+
+with open("/etc/nginx/nginx.conf") as f:
+    content = f.read()
+
+block = r"""
+# BEGIN alba-development
+    # Alba Development - albadevelopment.co.uk (Cloudflare Tunnel, port SERVE_PORT_TOKEN)
+
+    # Redirect bare domain to www (fixes duplicate-content / canonical issue)
     server {
         listen SERVE_PORT_TOKEN;
-        server_name _;
+        server_name albadevelopment.co.uk;
+        return 301 https://www.albadevelopment.co.uk$request_uri;
+    }
+
+    # Main www site
+    server {
+        listen SERVE_PORT_TOKEN;
+        server_name www.albadevelopment.co.uk;
 
         root REMOTE_DIR_TOKEN;
         index index.html;
@@ -203,29 +231,38 @@ block = """
             deny all;
         }
     }
+# END alba-development
 """
 
-idx = content.rfind("}")
-new_content = content[:idx] + block + content[idx:]
+if "# BEGIN alba-development" in content:
+    # Replace the existing marked block in-place; always use the new block content
+    new_content = re.sub(
+        r"# BEGIN alba-development.*?# END alba-development\n",
+        lambda _: block.strip() + "\n",
+        content,
+        flags=re.DOTALL,
+    )
+else:
+    # Fresh inject: insert before the last closing brace of the http block
+    idx = content.rfind("}")
+    new_content = content[:idx] + block + content[idx:]
 
-f = open("/etc/nginx/nginx.conf", "w")
-f.write(new_content)
-f.close()
+with open("/etc/nginx/nginx.conf", "w") as f:
+    f.write(new_content)
 print("Injected OK")
 '@
-        # Replace tokens with actual values
-        $pyInject = $pyInject.Replace("SERVE_PORT_TOKEN", $SERVE_PORT).Replace("REMOTE_DIR_TOKEN", $REMOTE_DIR)
+    # Replace tokens with actual values
+    $pyInject = $pyInject.Replace("SERVE_PORT_TOKEN", $SERVE_PORT).Replace("REMOTE_DIR_TOKEN", $REMOTE_DIR)
 
-        $tmpPy = [System.IO.Path]::GetTempFileName() + ".py"
-        [System.IO.File]::WriteAllText($tmpPy, $pyInject, [System.Text.Encoding]::ASCII)
-        scp $tmpPy "${PI_HOST}:/tmp/inject_alba_development.py"
-        Remove-Item $tmpPy
+    $tmpPy = [System.IO.Path]::GetTempFileName() + ".py"
+    [System.IO.File]::WriteAllText($tmpPy, $pyInject, [System.Text.Encoding]::ASCII)
+    scp $tmpPy "${PI_HOST}:/tmp/inject_alba_development.py"
+    Remove-Item $tmpPy
 
-        $result = ssh $PI_HOST "sudo python3 /tmp/inject_alba_development.py ; sudo rm /tmp/inject_alba_development.py" 2>&1
-        Write-Host $result -ForegroundColor DarkGray
-        if ($result -notmatch "Injected OK") { throw "Python injection failed: $result" }
-        Write-Ok "Server block injected into /etc/nginx/nginx.conf"
-    }
+    $result = ssh $PI_HOST "sudo python3 /tmp/inject_alba_development.py ; sudo rm /tmp/inject_alba_development.py" 2>&1
+    Write-Host $result -ForegroundColor DarkGray
+    if ($result -notmatch "Injected OK") { throw "Python injection failed: $result" }
+    Write-Ok "Server blocks injected/updated in /etc/nginx/nginx.conf"
 }
 
 # ---- PHASE 5 : Update cloudflared config ------------------------------------
