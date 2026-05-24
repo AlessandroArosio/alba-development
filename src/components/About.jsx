@@ -20,17 +20,17 @@ export default function About() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              The person behind the code
+              Senior delivery without agency layers
             </h2>
             <div className="space-y-4 text-gray-400 leading-relaxed">
               <p>
-                By day, I lead engineering teams at a global trading fintech — building and managing the complex systems that power real-time stock trading for thousands of users.
+                I lead engineering teams at a global trading fintech, working on complex systems where reliability, clarity, and good technical decisions matter every day.
               </p>
               <p>
-                By night, I channel that same enterprise discipline into building high-performance web and mobile applications for small businesses and startups. Based in <strong className="text-white">Edinburgh, Scotland</strong>, I work with clients across the UK — from the Highlands and Isle of Skye to London and beyond.
+                That matters because when I work with a business owner or founder, you are not buying a generic freelancer. You are getting direct access to someone who can translate business goals into sensible product decisions, technical trade-offs, and dependable delivery.
               </p>
               <p>
-                I don&apos;t outsource. I don&apos;t cut corners. Every project gets the same engineering rigour I apply to trading systems handling millions in daily volume. You get a direct line to the person building your product — no account managers, no hand-offs.
+                I work directly with clients from <strong className="text-white">Edinburgh, Scotland</strong> across the UK. No account managers, no outsourcing, no inflated agency overhead. Just honest advice, clear communication, and software built around outcomes that matter to your business.
               </p>
             </div>
           </motion.div>

@@ -9,6 +9,7 @@ const projects = [
     title: 'DataMill',
     subtitle: 'Airbnb Analytics Dashboard',
     description: 'A real-time analytics platform for Airbnb hosts managing multiple properties. Tracks net income, platform fees, cleaning revenue, and occupancy with interactive financial charts and a live activity feed.',
+    outcome: 'Gives hosts a clearer view of performance so they can spot revenue leaks and make faster pricing or occupancy decisions.',
     tags: ['Data Visualisation', 'REST APIs', 'Java', 'React'],
     color: 'orange',
     image: '/images/portfolio/datamill-dashboard.webp',
@@ -18,6 +19,7 @@ const projects = [
     title: 'Digital Guest Concierge',
     subtitle: 'Holiday Let Platform',
     description: 'A comprehensive digital concierge for holiday lets. Guests get live bus times, local events with smart search, an AI-powered itinerary planner, weather forecasts, and curated local recommendations — all from a simple link.',
+    outcome: 'Improves the guest experience while helping accommodation businesses stand out, reduce repetitive guest questions, and encourage repeat stays.',
     tags: ['Web App', 'AI Integration', 'Live APIs', 'PostgreSQL'],
     color: 'rose',
     image: '/images/portfolio/concierge-marketing.webp',
@@ -32,6 +34,7 @@ const projects = [
     title: "L'Aura",
     subtitle: 'Fine Dining Restaurant',
     description: 'An elegant website for a fine dining restaurant with online table reservations and AI-powered personalised menu and wine pairing suggestions tailored to each booking.',
+    outcome: 'Turns a restaurant website into a better booking and upsell channel instead of a static brochure.',
     tags: ['Web Design', 'AI Features', 'Booking System'],
     color: 'amber',
     image: '/images/portfolio/laura-restaurant.webp',
@@ -41,6 +44,7 @@ const projects = [
     title: 'ParkIQ',
     subtitle: 'Parking Management Dashboard',
     description: 'A live parking management dashboard tracking occupancy, session counts, revenue, and overstay alerts. Features real-time vehicle monitoring with colour-coded occupancy trends and an AI briefing tool.',
+    outcome: 'Helps operators react faster to site issues, monitor revenue, and manage capacity with less manual oversight.',
     tags: ['Dashboard', 'Real-time Data', 'AI Briefing', 'Analytics'],
     color: 'blue',
     image: '/images/portfolio/parkiq-dashboard.webp',
@@ -50,6 +54,7 @@ const projects = [
     title: 'EcoClean UK',
     subtitle: 'Cleaning Service Website',
     description: 'A conversion-focused website for an eco-friendly cleaning company. Features an instant quote builder where customers select service type, bedrooms, and postcode to receive a price in seconds.',
+    outcome: 'Reduces friction between interest and enquiry by giving potential customers an instant path to pricing and conversion.',
     tags: ['Web Design', 'Lead Generation', 'Quote Engine'],
     color: 'emerald',
     image: '/images/portfolio/ecoclean-hero.webp',
@@ -59,6 +64,7 @@ const projects = [
     title: 'Haven',
     subtitle: 'Property Search Platform',
     description: 'A property search platform for buying, renting, and selling homes. Features location-based search with property type filters, a curated featured listings feed, and agent profiles.',
+    outcome: 'Makes discovery easier for buyers and renters while giving property businesses a stronger digital storefront.',
     tags: ['Web App', 'Search & Filtering', 'Property Tech'],
     color: 'indigo',
     image: '/images/portfolio/haven-property.webp',
@@ -68,6 +74,7 @@ const projects = [
     title: 'Native Gym Tracker',
     subtitle: 'iOS & Android App',
     description: 'A mobile application to log workouts, track exercise progression over time, and visualise fitness journeys. Built with offline-first capabilities and native performance on iOS and Android.',
+    outcome: 'Keeps users engaged with a smoother mobile experience and a product they can rely on anywhere, even without a connection.',
     tags: ['React Native', 'SQLite', 'iOS & Android'],
     color: 'purple',
     image: '/images/portfolio/gymtracker-app.webp',
@@ -143,6 +150,12 @@ function ProjectCard({ project, index }) {
         <p className="text-gray-400 text-sm leading-relaxed flex-grow mb-5">
           {project.description}
         </p>
+        <div className="mb-5 rounded-2xl border border-gray-800 bg-gray-900/40 px-4 py-3">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500 mb-1">
+            Business impact
+          </p>
+          <p className="text-sm leading-relaxed text-gray-300">{project.outcome}</p>
+        </div>
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <span key={tag} className="text-xs font-medium px-2.5 py-1 bg-gray-800 text-gray-300 rounded-md">
@@ -161,9 +174,14 @@ export default function Portfolio({ limit }) {
   return (
     <section id="projects" className="py-24 border-t border-gray-800 relative bg-page-alt">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center gap-4 mb-12">
-          <h2 className="text-3xl font-bold text-white">Selected Work</h2>
-          <div className="h-px bg-gray-800 flex-grow" />
+        <div className="mb-12">
+          <div className="flex items-center gap-4 mb-4">
+            <h2 className="text-3xl font-bold text-white">Selected Work</h2>
+            <div className="h-px bg-gray-800 flex-grow" />
+          </div>
+          <p className="max-w-3xl text-gray-400 text-lg">
+            A sample of products, platforms, and internal tools built to improve conversion, streamline operations, and give teams better visibility.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">

@@ -5,30 +5,30 @@ const services = [
   {
     icon: Globe,
     color: 'orange',
-    title: 'Web Applications',
-    description: 'Custom web apps that look sharp and perform fast — from booking platforms and client portals to internal business tools. Built to scale with your growth.',
-    examples: ['Customer portals', 'Booking systems', 'SaaS platforms', 'Admin dashboards'],
+    title: 'Increase Revenue',
+    description: 'Turn more visitors into customers with websites, booking flows, customer portals, and digital products designed around commercial conversion.',
+    examples: ['Direct bookings', 'Lead generation', 'Customer portals', 'Paid MVPs'],
   },
   {
     icon: Smartphone,
     color: 'rose',
-    title: 'Mobile Apps',
-    description: 'Native-quality iOS and Android apps from a single codebase. Offline-capable, smooth, and built for real users — not just demos.',
-    examples: ['Android apps', 'Offline-first design', 'Push notifications', 'Google Play launch'],
+    title: 'Save Time',
+    description: 'Replace repetitive manual work with tools your team can actually use, from mobile workflows in the field to internal systems that remove daily admin.',
+    examples: ['Internal tools', 'Mobile workflows', 'Offline capture', 'Team automation'],
   },
   {
     icon: BrainCircuit,
     color: 'cyan',
-    title: 'AI Integration',
-    description: 'Add intelligent features to your product — from AI-powered chatbots and content generation to smart recommendations and automated workflows.',
-    examples: ['AI chatbots', 'Content generation', 'Smart search', 'Workflow automation'],
+    title: 'Reduce Friction',
+    description: 'Use AI and workflow design where it genuinely removes bottlenecks, improves customer experience, or speeds up decision-making.',
+    examples: ['Smart search', 'AI assistants', 'Workflow automation', 'Recommendation tools'],
   },
   {
     icon: BarChart3,
     color: 'purple',
-    title: 'Data & Analytics',
-    description: 'Turn your raw data into clear, actionable insights. Interactive dashboards, automated reports, and API integrations that connect your tools.',
-    examples: ['Analytics dashboards', 'API integrations', 'Automated reports', 'Data pipelines'],
+    title: 'See What Is Working',
+    description: 'Get clearer reporting, better dashboards, and joined-up systems so you can make faster decisions without chasing data across tools.',
+    examples: ['Live dashboards', 'API integrations', 'Automated reports', 'Data pipelines'],
   },
 ]
 
@@ -50,9 +50,9 @@ export default function Services() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What I Can Build for You</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Business outcomes first. Technology second.</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Whether you need a customer-facing app, an internal tool, or AI-powered features — I deliver production-ready software tailored to your business.
+            The right software should help you grow revenue, save time, or reduce operational drag. I choose the stack around the problem, not the other way around.
           </p>
         </motion.div>
 

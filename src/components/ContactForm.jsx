@@ -5,7 +5,13 @@ import { motion } from 'framer-motion'
 const WEB3FORMS_KEY = 'f5050471-e607-48f2-8b40-b65f8aab4d81'
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    businessGoal: '',
+    biggestBottleneck: '',
+    message: '',
+  })
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
 
   const handleChange = (e) => {
@@ -32,7 +38,7 @@ export default function ContactForm() {
       const data = await res.json()
       if (data.success) {
         setStatus('success')
-        setFormData({ name: '', email: '', message: '' })
+        setFormData({ name: '', email: '', businessGoal: '', biggestBottleneck: '', message: '' })
       } else {
         setStatus('error')
       }
@@ -51,9 +57,9 @@ export default function ContactForm() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to bring your idea to light?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Tell me what outcome you want to create</h2>
           <p className="text-gray-400 text-lg">
-            Send me a brief overview of what you&apos;re looking to build, and we can set up a quick follow-up call.
+            Share the business goal, the bottleneck, and what success would look like. I&apos;ll come back with practical next steps, not a generic sales pitch.
           </p>
         </motion.div>
 
@@ -98,7 +104,35 @@ export default function ContactForm() {
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Project Overview</label>
+            <label htmlFor="businessGoal" className="block text-sm font-medium text-gray-300 mb-2">What business result are you trying to achieve?</label>
+            <input
+              type="text"
+              id="businessGoal"
+              name="businessGoal"
+              required
+              value={formData.businessGoal}
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
+              placeholder="Examples: increase bookings, save admin time, validate a new product idea"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="biggestBottleneck" className="block text-sm font-medium text-gray-300 mb-2">What is the biggest bottleneck right now?</label>
+            <input
+              type="text"
+              id="biggestBottleneck"
+              name="biggestBottleneck"
+              required
+              value={formData.biggestBottleneck}
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
+              placeholder="Examples: too much manual admin, weak conversion, scattered reporting"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Anything else I should know?</label>
             <textarea
               id="message"
               name="message"
@@ -107,7 +141,7 @@ export default function ContactForm() {
               value={formData.message}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors resize-none"
-              placeholder="Tell me briefly about your project — what are you looking to build?"
+              placeholder="Add context on your business, timeline, budget range, or the users you want to serve"
             />
           </div>
 
@@ -134,7 +168,7 @@ export default function ContactForm() {
               animate={{ opacity: 1, y: 0 }}
             >
               <CheckCircle className="w-5 h-5 shrink-0" />
-              <p className="text-sm">Message sent successfully! I&apos;ll get back to you shortly.</p>
+              <p className="text-sm">Message sent successfully. I&apos;ll reply with suggested next steps shortly.</p>
             </motion.div>
           )}
 

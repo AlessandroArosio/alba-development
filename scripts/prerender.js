@@ -11,33 +11,33 @@ const serverDir = path.resolve(distDir, 'server')
 const routes = [
   {
     path: '/',
-    title: 'Alba Development | Web &amp; Mobile App Development Edinburgh, Scotland',
+    title: 'Alba Development | Custom Software for Growth, Automation &amp; Better Decisions',
     description:
-      'Web &amp; mobile app development from Edinburgh, Scotland. Custom React, React Native and AI-powered solutions for ambitious businesses across the UK and Scotland.',
+      'Outcome-led custom software from Edinburgh. Alba Development helps businesses increase bookings, reduce admin, and improve reporting with web apps, mobile tools, and thoughtful AI integration.',
     canonical: 'https://www.albadevelopment.co.uk/',
     outFile: path.resolve(distDir, 'index.html'),
   },
   {
     path: '/services',
-    title: 'Web &amp; Mobile App Development Services | Alba Development Edinburgh',
+    title: 'Software for Growth, Automation &amp; Reporting | Alba Development',
     description:
-      'Custom web applications, React Native mobile apps, AI integration and data analytics services from Edinburgh, Scotland. Enterprise-grade quality for ambitious businesses.',
+      'Explore outcome-led software services focused on revenue growth, manual process reduction, operational visibility, and MVP validation for businesses across the UK.',
     canonical: 'https://www.albadevelopment.co.uk/services',
     outFile: path.resolve(distDir, 'services/index.html'),
   },
   {
     path: '/portfolio',
-    title: 'Selected Work &amp; Case Studies | Alba Development Edinburgh',
+    title: 'Outcome-Focused Software Case Studies | Alba Development',
     description:
-      'Explore real-world web and mobile applications built by Alba Development. From Airbnb analytics engines to AI-powered concierge platforms and native mobile apps.',
+      'See how Alba Development builds software that improves bookings, automation, guest experience, reporting, and day-to-day operations across different business models.',
     canonical: 'https://www.albadevelopment.co.uk/portfolio',
     outFile: path.resolve(distDir, 'portfolio/index.html'),
   },
   {
     path: '/contact',
-    title: 'Get in Touch | Free Consultation | Alba Development Edinburgh',
+    title: 'Discuss Your Business Goal | Alba Development',
     description:
-      'Ready to build your web or mobile app? Get a free 30-minute consultation with Alba Development. Based in Edinburgh, working with clients across Scotland and the UK.',
+      'Tell Alba Development what result you want to create, where the friction is, and what success looks like. Based in Edinburgh and working with businesses across the UK.',
     canonical: 'https://www.albadevelopment.co.uk/contact',
     outFile: path.resolve(distDir, 'contact/index.html'),
   },
@@ -145,6 +145,38 @@ async function prerender() {
     fs.writeFileSync(route.outFile, html)
     console.log(`✓ Pre-rendered ${route.path}`)
   }
+
+  // Generate fresh sitemap.xml with current date for SEO freshness on live site
+  const today = new Date().toISOString().split('T')[0]
+  const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.albadevelopment.co.uk/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.albadevelopment.co.uk/services</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.albadevelopment.co.uk/portfolio</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.albadevelopment.co.uk/contact</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>`
+  fs.writeFileSync(path.resolve(distDir, 'sitemap.xml'), sitemapContent)
+  console.log('✓ Generated fresh sitemap.xml')
 
   fs.rmSync(serverDir, { recursive: true, force: true })
 }

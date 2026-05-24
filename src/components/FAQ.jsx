@@ -4,28 +4,28 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const faqs = [
   {
-    question: 'How much does a web or mobile app cost?',
-    answer: 'Every project is different, so I provide custom quotes based on the specific features and complexity involved. For a rough sense: a simple MVP starts from a few hundred pounds, while a full-featured custom application runs into the low thousands. I\'ll always give you a clear breakdown before any work begins.',
+    question: 'How do I know if custom software is worth it for my business?',
+    answer: 'It is usually worth it when the same bottleneck keeps costing you revenue, time, or customer experience every week. If a process is repetitive, error-prone, or limiting growth, software can create a meaningful return. I will tell you plainly if a lighter option is better than a custom build.',
   },
   {
-    question: 'How long does a typical project take?',
-    answer: 'An MVP prototype can be ready in 2–4 weeks. A full custom application typically takes 6–12 weeks depending on scope. I\'ll give you a realistic timeline upfront and keep you updated throughout.',
+    question: 'Can you help if I only know the outcome I want, not the exact product?',
+    answer: 'Yes. That is a common starting point. You can come with a goal such as increasing bookings, reducing admin, or improving reporting, and I can help shape the smallest useful product or workflow to get you there.',
   },
   {
-    question: 'Do you work with non-technical founders?',
-    answer: 'Absolutely. Most of my clients aren\'t technical — they have a business idea and need someone to build it. I\'ll translate your vision into a technical plan, explain trade-offs in plain English, and keep you in the loop every step of the way.',
+    question: 'Do you work with non-technical founders and business owners?',
+    answer: 'Absolutely. Most buyers care about outcomes, not frameworks. I translate your goal into a practical plan, explain trade-offs in plain English, and keep the process transparent from first call to launch.',
   },
   {
-    question: 'I\'m based outside Edinburgh — can we still work together?',
-    answer: 'Yes. While I\'m based in Edinburgh, I work with clients across Scotland, the Isle of Skye, and the wider UK. Everything is managed remotely via video calls, shared project boards, and regular demos. Geography is never a barrier.',
+    question: 'When does it make sense to start with an MVP instead of a full build?',
+    answer: 'Start with an MVP when the idea still needs validation, when budget needs to stay tight, or when you want real user feedback before expanding scope. A full build makes more sense once the workflow, audience, and desired outcome are clearer.',
   },
   {
-    question: 'Do you offer ongoing support after launch?',
-    answer: 'Yes. I offer flexible maintenance and support arrangements after launch — from ad-hoc bug fixes to monthly retainers for continued development. Your app won\'t be left unsupported.',
+    question: 'Do you offer AI features for every project?',
+    answer: 'No, and that is deliberate. AI is useful when it improves speed, search, support, recommendations, or workflow quality. If it adds cost and complexity without a real business benefit, I will recommend a simpler approach.',
   },
   {
     question: 'What happens after I fill in the contact form?',
-    answer: 'I\'ll reply within 24 hours to schedule a free 30-minute consultation call. On the call, we\'ll discuss your idea, I\'ll ask some questions to understand the scope, and then I\'ll follow up with a proposal and quote — no obligation.',
+    answer: 'I will review your goal, bottleneck, and context, then reply within 24 hours with suggested next steps. That may be a short call, a recommendation for a focused discovery sprint, or a simple note if the problem does not need a custom build yet.',
   },
 ]
 
@@ -69,7 +69,7 @@ export default function FAQ() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-          <p className="text-gray-400 text-lg">Answers to common questions about working with me.</p>
+          <p className="text-gray-400 text-lg">Answers to the commercial questions most buyers ask before starting.</p>
         </motion.div>
 
         <motion.div

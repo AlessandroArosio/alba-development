@@ -27,7 +27,7 @@
   <!-- Brand Name -->
   <text x="600" y="320" text-anchor="middle" fill="white" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="900" letter-spacing="-2">ALBA<tspan fill="#4b5563" font-weight="300">DEV</tspan></text>
   <!-- Tagline -->
-  <text x="600" y="380" text-anchor="middle" fill="url(#accent)" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="600">Web &amp; Mobile App Development</text>
+  <text x="600" y="380" text-anchor="middle" fill="url(#accent)" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="600">Software for Growth &amp; Automation</text>
   <!-- Location -->
   <text x="600" y="420" text-anchor="middle" fill="#9ca3af" font-family="system-ui, -apple-system, sans-serif" font-size="18">Edinburgh, Scotland</text>
   <!-- URL -->

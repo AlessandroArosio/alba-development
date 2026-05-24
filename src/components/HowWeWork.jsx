@@ -4,18 +4,18 @@ import { motion } from 'framer-motion'
 const process = [
   {
     icon: MessageSquare,
-    title: 'Free Consultation',
-    description: 'We hop on a quick call to discuss your idea. I\'ll ask the right questions and give you honest feedback.',
+    title: 'Clarify the Goal',
+    description: 'We start with the commercial target, bottleneck, or idea you want to validate so the solution is grounded in business reality.',
   },
   {
     icon: FileText,
-    title: 'Proposal & Quote',
-    description: 'You\'ll receive a clear proposal with scope, timeline, and transparent pricing — no surprises, no hidden fees.',
+    title: 'Choose the Right Scope',
+    description: 'I recommend the smallest useful version first, with clear scope, timeline, and pricing so you know what is worth building now.',
   },
   {
     icon: Hammer,
-    title: 'Build & Launch',
-    description: 'I build your product with regular demos and updates, then deploy it live. You\'re involved every step of the way.',
+    title: 'Build, Launch, Improve',
+    description: 'You get regular demos, transparent progress, and a production-ready launch plan focused on shipping something useful, not just something impressive.',
   },
 ]
 
@@ -31,7 +31,7 @@ export default function HowWeWork() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">How We Work</h2>
-          <p className="text-gray-400 text-lg">Transparent pricing. No agency bloat. Just engineering excellence.</p>
+          <p className="text-gray-400 text-lg">A practical process built to reduce risk, avoid waste, and keep momentum.</p>
         </motion.div>
 
         {/* 3-step process */}
@@ -73,9 +73,9 @@ export default function HowWeWork() {
               <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-orange-400 font-bold">01</div>
               <Rocket className="w-6 h-6 text-gray-600" />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-3">The MVP Prototype</h3>
+            <h3 className="text-2xl font-bold text-white mb-3">Outcome Discovery Sprint</h3>
             <p className="text-gray-400 leading-relaxed">
-              Not sure if your idea will work? Let&apos;s start small. I offer a low-cost, rapid prototyping phase to build a core MVP. This gives you a tangible &ldquo;flavor&rdquo; of the app to test with users or investors without breaking the bank.
+              If the best next move is still unclear, we start small. A focused sprint can map the problem, shape the user flow, and build a lightweight prototype so you can test the idea before committing to a larger build.
             </p>
           </motion.div>
 
@@ -92,9 +92,9 @@ export default function HowWeWork() {
               <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-purple-400 font-bold">02</div>
               <Code2 className="w-6 h-6 text-gray-600" />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-3 relative z-10">The Custom Build</h3>
+            <h3 className="text-2xl font-bold text-white mb-3 relative z-10">Targeted Build and Launch</h3>
             <p className="text-gray-400 leading-relaxed relative z-10">
-              When you&apos;re ready to scale, we build the full product. Pricing is entirely transparent and custom-quoted based on the project&apos;s specific complexity, required features, and the exact hours needed to deliver enterprise-grade quality.
+              When the scope is clear, I build the product around the agreed business outcome. Pricing stays transparent and the work stays focused on what will move the needle, not on padding the feature list.
             </p>
           </motion.div>
         </div>
