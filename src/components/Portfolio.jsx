@@ -1,9 +1,20 @@
 import { useState } from 'react'
-import { Activity, ArrowRight } from 'lucide-react'
+import { Activity, ArrowRight, ExternalLink } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
 const projects = [
+  {
+    id: 'albastays',
+    title: 'Alba Stays',
+    subtitle: 'Direct Booking Platform',
+    description: 'A complete direct-booking platform for holiday-let operators. Guests check live availability and pay securely by card, while hosts manage properties, calendars, pricing, and reservations from an admin console — with Airbnb calendars kept in sync automatically.',
+    outcome: 'Removes marketplace commission on direct bookings and gives operators one place to run their whole rental business.',
+    tags: ['Booking Platform', 'Stripe Payments', 'Java Spring Boot', 'Multi-tenant SaaS'],
+    color: 'emerald',
+    image: '/images/portfolio/albastays-booking.webp',
+    link: 'https://www.albahouse.co.uk',
+  },
   {
     id: 'datamill',
     title: 'DataMill',
@@ -28,6 +39,18 @@ const projects = [
       { src: '/images/portfolio/concierge-events.webp', label: 'Events Explorer' },
       { src: '/images/portfolio/concierge-itinerary.webp', label: 'AI Itinerary Planner' },
     ],
+    link: 'https://demo.albahouse.co.uk',
+  },
+  {
+    id: 'aircleaning',
+    title: 'AirCleaning',
+    subtitle: 'Cleaning Operations PWA',
+    description: 'A mobile-first scheduling app that coordinates Airbnb cleaning across multiple companies. Managers assign jobs from a weekly dashboard synced with Airbnb calendars; cleaners follow a simple 7-day schedule in five languages, with Telegram alerts when properties are guest-ready.',
+    outcome: 'Cuts the daily back-and-forth of changeover coordination and gives managers instant visibility of what is clean, booked, and ready.',
+    tags: ['Mobile PWA', 'Airbnb Sync', 'Telegram Alerts', 'Multi-language'],
+    color: 'cyan',
+    image: '/images/portfolio/aircleaning-landing.webp',
+    link: 'https://clean.albahouse.co.uk',
   },
   {
     id: 'laura',
@@ -50,14 +73,25 @@ const projects = [
     image: '/images/portfolio/parkiq-dashboard.webp',
   },
   {
-    id: 'ecoclean',
-    title: 'EcoClean UK',
-    subtitle: 'Cleaning Service Website',
-    description: 'A conversion-focused website for an eco-friendly cleaning company. Features an instant quote builder where customers select service type, bedrooms, and postcode to receive a price in seconds.',
-    outcome: 'Reduces friction between interest and enquiry by giving potential customers an instant path to pricing and conversion.',
-    tags: ['Web Design', 'Lead Generation', 'Quote Engine'],
-    color: 'emerald',
-    image: '/images/portfolio/ecoclean-hero.webp',
+    id: 'laschicas',
+    title: 'Las Chicas Cleaning',
+    subtitle: 'Premium Cleaning Business Website',
+    description: 'A fast, SEO-focused website for an Edinburgh premium cleaning business, with dedicated landing pages for domestic, commercial, holiday-let, and end-of-tenancy cleaning, plus structured data for local search.',
+    outcome: 'Positions the business for local search visibility and turns visits into quote requests with clear calls to action on every page.',
+    tags: ['Astro', 'Local SEO', 'Lead Generation'],
+    color: 'amber',
+    image: '/images/portfolio/laschicas-hero.webp',
+    link: 'https://alessandroarosio.github.io/las-chicas/',
+  },
+  {
+    id: 'laundroute',
+    title: 'LaundRoute',
+    subtitle: 'Laundry Logistics PWA',
+    description: 'A route-planning app for laundry collection and delivery across Edinburgh. Managers build weekly rotas with pickup and drop-off windows and optimise driver routes with AI; drivers follow an ordered stop list with completion tracking and Telegram notifications.',
+    outcome: 'Shrinks route-planning time and mileage while giving managers live confirmation that every stop is done.',
+    tags: ['AI Route Optimisation', 'Next.js PWA', 'PostgreSQL', 'Telegram'],
+    color: 'blue',
+    image: null,
   },
   {
     id: 'haven',
@@ -87,6 +121,7 @@ const colorMap = {
   amber:   { bg: 'bg-amber-500/10',   text: 'text-amber-400',   border: 'hover:border-amber-500/50',   dot: 'bg-amber-400' },
   blue:    { bg: 'bg-blue-500/10',    text: 'text-blue-400',    border: 'hover:border-blue-500/50',    dot: 'bg-blue-400' },
   emerald: { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'hover:border-emerald-500/50', dot: 'bg-emerald-400' },
+  cyan:    { bg: 'bg-cyan-500/10',    text: 'text-cyan-400',    border: 'hover:border-cyan-500/50',    dot: 'bg-cyan-400' },
   indigo:  { bg: 'bg-indigo-500/10',  text: 'text-indigo-400',  border: 'hover:border-indigo-500/50',  dot: 'bg-indigo-400' },
   purple:  { bg: 'bg-purple-500/10',  text: 'text-purple-400',  border: 'hover:border-purple-500/50',  dot: 'bg-purple-400' },
 }
@@ -163,6 +198,17 @@ function ProjectCard({ project, index }) {
             </span>
           ))}
         </div>
+        {project.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`mt-5 inline-flex items-center gap-2 text-sm font-semibold ${colors.text} hover:underline underline-offset-4`}
+          >
+            View live site
+            <ExternalLink className="w-4 h-4" aria-hidden="true" />
+          </a>
+        )}
       </div>
     </motion.div>
   )

@@ -17,6 +17,14 @@ export default function Footer() {
           <Link to="/portfolio" className="text-sm text-gray-600 hover:text-gray-400 transition-colors duration-200">Portfolio</Link>
           <Link to="/contact" className="text-sm text-gray-600 hover:text-gray-400 transition-colors duration-200">Contact</Link>
         </nav>
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6">
+          <a href="tel:+447759195959" className="text-sm text-gray-500 hover:text-gray-300 transition-colors duration-200">
+            +44 7759 195959
+          </a>
+          <a href="mailto:hello@albadevelopment.co.uk" className="text-sm text-gray-500 hover:text-gray-300 transition-colors duration-200">
+            hello@albadevelopment.co.uk
+          </a>
+        </div>
         <p className="text-gray-600 text-sm">
           &copy; {new Date().getFullYear()} Alba Development. Built in Scotland.
         </p>

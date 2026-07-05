@@ -153,6 +153,11 @@ $blockPreview = @"
         root $REMOTE_DIR;
         index index.html;
 
+        # Emit relative Location headers on trailing-slash redirects.
+        # Without this, nginx 301s /portfolio -> http://host:$SERVE_PORT/portfolio/,
+        # leaking the internal port and downgrading to http behind the tunnel.
+        absolute_redirect off;
+
         add_header X-Frame-Options        "SAMEORIGIN"                      always;
         add_header X-Content-Type-Options "nosniff"                         always;
         add_header Referrer-Policy        "strict-origin-when-cross-origin" always;
@@ -212,6 +217,11 @@ block = r"""
 
         root REMOTE_DIR_TOKEN;
         index index.html;
+
+        # Emit relative Location headers on trailing-slash redirects.
+        # Without this, nginx 301s /portfolio -> http://host:SERVE_PORT_TOKEN/portfolio/,
+        # leaking the internal port and downgrading to http behind the tunnel.
+        absolute_redirect off;
 
         add_header X-Frame-Options        "SAMEORIGIN"                      always;
         add_header X-Content-Type-Options "nosniff"                         always;

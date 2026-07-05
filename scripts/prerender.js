@@ -22,7 +22,7 @@ const routes = [
     title: 'Software for Growth, Automation &amp; Reporting | Alba Development',
     description:
       'Explore outcome-led software services focused on revenue growth, manual process reduction, operational visibility, and MVP validation for businesses across the UK.',
-    canonical: 'https://www.albadevelopment.co.uk/services',
+    canonical: 'https://www.albadevelopment.co.uk/services/',
     outFile: path.resolve(distDir, 'services/index.html'),
   },
   {
@@ -30,7 +30,7 @@ const routes = [
     title: 'Outcome-Focused Software Case Studies | Alba Development',
     description:
       'See how Alba Development builds software that improves bookings, automation, guest experience, reporting, and day-to-day operations across different business models.',
-    canonical: 'https://www.albadevelopment.co.uk/portfolio',
+    canonical: 'https://www.albadevelopment.co.uk/portfolio/',
     outFile: path.resolve(distDir, 'portfolio/index.html'),
   },
   {
@@ -38,7 +38,7 @@ const routes = [
     title: 'Discuss Your Business Goal | Alba Development',
     description:
       'Tell Alba Development what result you want to create, where the friction is, and what success looks like. Based in Edinburgh and working with businesses across the UK.',
-    canonical: 'https://www.albadevelopment.co.uk/contact',
+    canonical: 'https://www.albadevelopment.co.uk/contact/',
     outFile: path.resolve(distDir, 'contact/index.html'),
   },
 ]
@@ -157,19 +157,19 @@ async function prerender() {
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.albadevelopment.co.uk/services</loc>
+    <loc>https://www.albadevelopment.co.uk/services/</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.albadevelopment.co.uk/portfolio</loc>
+    <loc>https://www.albadevelopment.co.uk/portfolio/</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.albadevelopment.co.uk/contact</loc>
+    <loc>https://www.albadevelopment.co.uk/contact/</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
