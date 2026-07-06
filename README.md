@@ -72,7 +72,7 @@ node -e "import('sharp').then(async ({default: s}) => s('public/og-image.svg', {
 
 ## Contact details
 
-- Phone (+44 7759 195959) and email appear in the footer (`src/components/Footer.jsx`) and in the `ProfessionalService` JSON-LD in `index.html`. Update both together.
+- Phone (+44 7759 195959) appears in the footer (`src/components/Footer.jsx`) and in the `ProfessionalService` JSON-LD in `index.html`. Contact is via the form on `/contact` only — no public email address is published.
 
 ## Navigation
 

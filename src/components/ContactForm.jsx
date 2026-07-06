@@ -180,8 +180,7 @@ export default function ContactForm() {
             >
               <AlertCircle className="w-5 h-5 shrink-0" />
               <p className="text-sm">
-                Something went wrong. Please try again, or email me directly at{' '}
-                <a href="mailto:hello@albadevelopment.co.uk" className="underline hover:text-white">hello@albadevelopment.co.uk</a>.
+                Something went wrong. Please try again in a moment.
               </p>
             </motion.div>
           )}
