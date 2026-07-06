@@ -138,6 +138,7 @@ function ProjectCard({ project, index }) {
   return (
     <motion.div
       className={`bg-surface border border-gray-800 rounded-3xl overflow-hidden ${colors.border} transition-all hover:-translate-y-1 group flex flex-col`}
+      data-analytics-label={`Portfolio: ${project.title}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -203,6 +204,7 @@ function ProjectCard({ project, index }) {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-label={`Portfolio live link: ${project.title}`}
             className={`mt-5 inline-flex items-center gap-2 text-sm font-semibold ${colors.text} hover:underline underline-offset-4`}
           >
             View live site

@@ -183,6 +183,17 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      window.__albaAnalytics = {
+        pageLabels: {
+          "/": "Home",
+          "/services": "Services",
+          "/portfolio": "Portfolio",
+          "/contact": "Contacts"
+        }
+      };
+    </script>
+    <script defer src="https://analytics.albahouse.co.uk/analytics.js" data-property="alba-development"></script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -167,6 +167,13 @@ $blockPreview = @"
             add_header Cache-Control "public, immutable";
             access_log off;
         }
+
+        location /api/ {
+            proxy_pass http://localhost:8080/api/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+
         location / { try_files `$uri `$uri/ /index.html; }
         location ~ /\. { deny all; }
     }
@@ -231,6 +238,12 @@ block = r"""
             expires 1y;
             add_header Cache-Control "public, immutable";
             access_log off;
+        }
+
+        location /api/ {
+            proxy_pass http://localhost:8080/api/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
         }
 
         location / {

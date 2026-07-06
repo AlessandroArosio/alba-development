@@ -79,6 +79,14 @@ node -e "import('sharp').then(async ({default: s}) => s('public/og-image.svg', {
 - Desktop (`sm` and up): inline Services / Portfolio links plus the Get in Touch CTA.
 - Mobile: hamburger toggle in `src/components/Navbar.jsx` (`aria-expanded`/`aria-controls` wired) revealing Services / Portfolio / Contact; links close the menu on tap.
 
+## Analytics
+
+First-party analytics via the hosted Alba tracker — see [../ANALYTICS.md](../ANALYTICS.md).
+
+- Script tag and `pageLabels` config live in [index.html](./index.html).
+- Property slug: `alba-development`.
+- Optional `data-analytics-label` on portfolio cards and hero CTAs in components.
+
 ## Deployment notes
 
 - nginx server blocks are injected by [deploy.ps1](./deploy.ps1) and mirrored in `../edi-frontend-platform/infrastructure/nginx.conf`.

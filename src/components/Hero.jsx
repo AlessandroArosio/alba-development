@@ -47,12 +47,14 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4">
           <a
             href="#contact"
+            data-analytics-label="Hero CTA: Discuss Your Business Goal"
             className="bg-gradient-to-r from-orange-500 to-rose-500 text-white px-8 py-3.5 rounded-full font-bold text-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20"
           >
             Discuss Your Business Goal <ArrowRight className="w-5 h-5" />
           </a>
           <a
             href="#projects"
+            data-analytics-label="Hero CTA: See Outcome-Focused Work"
             className="bg-gray-800/80 text-white px-8 py-3.5 rounded-full font-bold text-lg hover:bg-gray-700 transition-colors border border-gray-700 flex items-center justify-center backdrop-blur-sm"
           >
             See Outcome-Focused Work
